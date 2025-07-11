@@ -26,6 +26,16 @@ export default {
         name: "Action",
       },
     ],
+    production_countries: [
+      {
+        iso_3166_1: "FR",
+        name: "France",
+      },
+      {
+        iso_3166_1: "LT",
+        name: "Lithuania",
+      },
+],
     homepage:
       "https://www.starwars.com/films/star-wars-episode-viii-the-last-jedi",
     id: 181808,
@@ -56,12 +66,7 @@ export default {
         origin_country: "US",
       },
     ],
-    production_countries: [
-      {
-        iso_3166_1: "US",
-        name: "United States of America",
-      },
-    ],
+    
     release_date: "2017-12-13",
     revenue: 1332459537,
     runtime: 152,

@@ -1,9 +1,9 @@
 import React from "react";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import Paper from "@mui/material/Paper";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack"; //Displays a left-pointing arrow
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward"; 
+import Paper from "@mui/material/Paper"; // used to wrap content, cards, menus, or panels
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+import Typography from "@mui/material/Typography"; //for text elements with built-in styling
 import HomeIcon from "@mui/icons-material/Home";
 import { MovieDetailsProps } from "../../types/interfaces"; 
 
