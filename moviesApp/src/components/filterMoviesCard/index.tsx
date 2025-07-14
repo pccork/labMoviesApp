@@ -26,12 +26,14 @@ const styles = {
   },
 };
   interface FilterMoviesCardProps {
-  titleFilter: string;
-  genreFilter: string;
- }
+     onUserInput: (f: FilterOption, s: string)  => void;
+     titleFilter: string;
+     genreFilter: string;
+  }
 
-  const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreFilter }) => {
+  const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreFilter, onUserInput }) => {
   const [genres, setGenres] = useState([{ id: '0', name: "All" }])
+   
 
   useEffect(() => {
     fetch(
@@ -49,6 +51,7 @@ const styles = {
 
   const handleChange = (e: SelectChangeEvent, type: FilterOption, value: string) => {
     e.preventDefault()
+    onUserInput(type, value)
     // Completed later
   };
 
@@ -98,21 +101,14 @@ const styles = {
           <Select
             labelId="country-label"
             id="country-select"
+            value={genreFilter}
+            onChange={handleGenreChange}
             //value={countryCode}
             //onChange={(e) => setCountryCode(e.target.value)}
   >
-            {countries.map((country) => (
-               <MenuItem key={country.id} value={country.id}>
-               {country.name}
-              </MenuItem>
-            ))}
+            
                </Select>
         </FormControl>
-
-
-
-
-
 
 
 
