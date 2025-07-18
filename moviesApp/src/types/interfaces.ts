@@ -63,6 +63,9 @@ export interface Review{
   author: string
 }
 
-
+export interface UpcomingMovie {
+  movie: MovieDetailsProps;
+  images: MovieImage[];
+}
 
 
