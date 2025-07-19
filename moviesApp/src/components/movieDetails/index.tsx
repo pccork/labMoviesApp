@@ -49,23 +49,28 @@ const MovieDetails: React.FC<MovieDetailsProps> = (movie) => {
                 <li>
                     <Chip label="Genres" sx={styles.chipLabel} color="primary" />
                 </li>
-                {movie.genres.map((g) => (
-                    <li key={g.name}>
+                {movie?.genres?.length ? (
+                    movie.genres.map((g) => (
+                    <li key={g.id}>
                         <Chip label={g.name} />
                     </li>
-                ))}
+                   ))
+                ) : (
+                   <p>No genres available.</p>
+                )}
             </Paper>
             <Paper component="ul" sx={styles.chipSet}>
-                <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
+                <Chip  icon={<AccessTimeIcon />}
+                       label={`${movie?.runtime ?? "N/A"} min.`} />
                 <Chip
                     icon={<MonetizationIcon />}
-                    label={`${movie.revenue.toLocaleString()}`}
+                    label={`${movie?.revenue?.toLocaleString() ?? "N/A"} }`}
                 />
                 <Chip
                     icon={<StarRate />}
-                    label={`${movie.vote_average} (${movie.vote_count}`}
+                    label={`${movie?.vote_average ?? "N/A"} (${movie?.vote_count ?? 0})`}
                 />
-                <Chip label={`Released: ${movie.release_date}`} />
+                <Chip label={`Released: ${movie?.release_date ?? "Unknown"}`} />
             </Paper>
             <Fab
                 color="secondary"

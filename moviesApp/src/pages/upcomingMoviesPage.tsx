@@ -1,34 +1,39 @@
-import React, {useState, useEffect}  from "react"; // replace existing react import
-import { useParams } from "react-router-dom";
-import MovieDetails from "../components/movieDetails";
-import { MovieDetailsProps} from "../types/interfaces";
-import { getMovie} from "../api/tmdb-api";
-import PageTemplate from "../components/templateMoviePage";
+import React, { useState, useEffect } from "react";
+import PageTemplate from '../components/templateMovieListPage';
+import { BaseMovieProps } from "../types/interfaces";
+import { getUpcomingMovies } from "../api/tmdb-api";
 
 
-const MovieDetailsPage: React.FC= () => {
-  const { id } = useParams();
-  const [movie, setMovie] = useState<MovieDetailsProps>();
+const UpcomingMoivesPage: React.FC = () => {
+  const [movies, setMovies] = useState<BaseMovieProps[]>([]);
+  const favourites = movies.filter(m => m.favourite)
+  localStorage.setItem('favourites', JSON.stringify(favourites))
+  // New function
+  const addToFavourites = (movieId: number) => {
+    const updatedMovies = movies.map((m: BaseMovieProps) =>
+      m.id === movieId ? { ...m, favourite: true } : m
+    );
+    setMovies(updatedMovies);
+  };
 
-  useEffect(() => {
-    getMovie(id ?? "").then((movie) => {
-      setMovie(movie);
+   useEffect(() => {
+    getUpcomingMovies().then(movies => {
+      setMovies(movies);
     });
-  }, [id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
   return (
-    <>
-      {movie ? (
-        <>
-        <PageTemplate movie={movie}>
-          <MovieDetails {...movie} />
-        </PageTemplate>
-      </>
-    ) : (
-      <p>Waiting for movie details</p>
-    )}
-    </>
+    <PageTemplate
+      title='Upcoming Movies'
+      movies={movies}
+      selectFavourite={addToFavourites}
+    />
   );
 };
 
-export default MovieDetailsPage;
+
+
+
+export default UpcomingMoivesPage;

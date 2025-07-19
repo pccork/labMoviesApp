@@ -42,14 +42,14 @@ const TemplateMoviePage: React.FC<TemplateMoviePageProps> = ({movie, children}) 
                 <Grid item xs={3}>
                     <div>
                         <ImageList cols={1}>
-                            {images.map((image: MovieImage) => (
+                            {images?.map((image: MovieImage) => (
                                 <ImageListItem
-                                    key={image.file_path}
+                                    key={image?.file_path}
                                     sx={styles.gridListTile}
                                     cols={1}
                                 >
                                     <img
-                                        src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
+                                        src={`https://image.tmdb.org/t/p/w500/${image?.file_path}`}
                                         alt={'Image alternative'}
                                     />
                                 </ImageListItem>
