@@ -10,8 +10,8 @@ import MovieFilterUI, {
 } from "../components/movieFilterUI";
 
 import Spinner from "../components/spinner";
-import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
-
+//import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
+import AddToPlaylistIcon from "../components/cardIcons/addToPlaylist";
 
 const titleFiltering = {
   name: "title",
@@ -65,7 +65,7 @@ const UpcomingMoivesPage: React.FC = () => {
       title='Upcoming Movies'
       movies={displayedMovies}
       action={(movie: BaseMovieProps) => {
-                    return <AddToFavouritesIcon {...movie} />
+                    return <AddToPlaylistIcon {...movie} />
                 }}
      
     />

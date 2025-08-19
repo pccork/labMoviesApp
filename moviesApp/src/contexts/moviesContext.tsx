@@ -6,13 +6,18 @@ interface MovieContextInterface {
     favourites: number[];
     addToFavourites: ((movie: BaseMovieProps) => void);
     removeFromFavourites: ((movie: BaseMovieProps) => void);
-    addReview: ((movie: BaseMovieProps, review: Review) => void); 
+    addToPlaylist: ((movie: BaseMovieProps) => void);
+    addReview: ((movie: BaseMovieProps, review: Review) => void);
+    playlist: number[]; 
 }
 const initialContextState: MovieContextInterface = {
     favourites: [],
+    playlist: [],
     addToFavourites: () => {},
     removeFromFavourites: () => {},
-    addReview: (movie, review) => { movie.id, review}, 
+    addToPlaylist: () => {},
+    addReview: (movie, review) => { movie.id, review},
+    
 };
 
 export const MoviesContext = React.createContext<MovieContextInterface>(initialContextState);
@@ -20,7 +25,7 @@ export const MoviesContext = React.createContext<MovieContextInterface>(initialC
 const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     const [myReviews, setMyReviews] = useState<Review[]>( [] )  // NEW
     const [favourites, setFavourites] = useState<number[]>([]);
-
+    const [playlist, setPlaylist] = useState<number[]>([]);
     const addReview = (movie:BaseMovieProps, review: Review) => {   // NEW
         setMyReviews( {...myReviews, [movie.id]: review } )
       };
@@ -34,6 +39,18 @@ const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) 
         });
     }, []);
 
+    const addToPlaylist = useCallback((movie: BaseMovieProps) => {
+        setPlaylist((prevPlaylist) => {
+            if (!prevPlaylist.includes(movie.id)) {
+                return [...prevPlaylist, movie.id];
+            }
+            return prevPlaylist;
+        });
+    }, []); 
+    
+
+
+
     const removeFromFavourites = useCallback((movie: BaseMovieProps) => {
         setFavourites((prevFavourites) => prevFavourites.filter((mId) => mId !== movie.id));
     }, []);
@@ -42,9 +59,11 @@ const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) 
         <MoviesContext.Provider
             value={{
                 favourites,
+                playlist,
                 addToFavourites,
                 removeFromFavourites,
-                addReview,    // NEW
+                addReview,// NEW
+                addToPlaylist,
             }}
         >
             {children}
