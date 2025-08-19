@@ -11,7 +11,7 @@ import MovieFilterUI, {
 
 import Spinner from "../components/spinner";
 //import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
-import AddToPlaylistIcon from "../components/cardIcons/addToMustWatch";
+import AddToMustWatchIcon from "../components/cardIcons/addToMustWatch";
 
 const titleFiltering = {
   name: "title",
@@ -65,7 +65,7 @@ const UpcomingMoivesPage: React.FC = () => {
       title='Upcoming Movies'
       movies={displayedMovies}
       action={(movie: BaseMovieProps) => {
-                    return <AddToPlaylistIcon {...movie} />
+                    return <AddToMustWatchIcon {...movie} />
                 }}
      
     />
