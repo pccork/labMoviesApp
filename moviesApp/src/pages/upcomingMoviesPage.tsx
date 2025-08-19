@@ -11,7 +11,7 @@ import MovieFilterUI, {
 
 import Spinner from "../components/spinner";
 //import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
-import AddToPlaylistIcon from "../components/cardIcons/addToPlaylist";
+import AddToPlaylistIcon from "../components/cardIcons/addToMustWatch";
 
 const titleFiltering = {
   name: "title",
