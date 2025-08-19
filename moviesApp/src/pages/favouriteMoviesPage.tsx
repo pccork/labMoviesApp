@@ -14,6 +14,7 @@ import RemoveFromFavourites from "../components/cardIcons/removeFromFavourites";
 import WriteReview from "../components/cardIcons/writeReview";
 
 
+
 const titleFiltering = {
   name: "title",
   value: "",
@@ -75,6 +76,11 @@ const FavouriteMoviesPage: React.FC = () => {
             </>
           );
         }}
+        />
+      <MovieFilterUI
+        onFilterValuesChange={changeFilterValues}
+        titleFilter={filterValues[0].value}
+        genreFilter={filterValues[1].value}
       />
     </>
   );
