@@ -38,6 +38,18 @@ export type FilterOption = "title" | "genre";
     }[];
   }
 
+   export interface MovieCastProps extends MovieDetailsProps{
+    cast: CastMember[];
+      
+    }
+
+    export interface MovieBioProps extends MovieCastProps{
+   cast: CastMember[];
+      
+    }
+
+
+
 export interface MovieImage {
   file_path: string;
   aspect_ratio?: number; //some props are optional...
@@ -89,4 +101,20 @@ export interface DiscoverMovies {
   total_results: number;
   results: BaseMovieProps[];
 }
+
+export interface CastMember {
+  id: number;
+  name: string;
+  character: string;
+
+}
+
+export interface ActorBio {
+  id: number;
+  name: string;
+  biography: string;
+  place_of_birth: string;
+}
+
+
 

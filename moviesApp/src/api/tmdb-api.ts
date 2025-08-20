@@ -24,6 +24,7 @@ export const getMovies = () => {
     throw error
  });
 };
+
   
   export const getGenres = () => {
      return fetch(
@@ -63,6 +64,39 @@ export const getMovies = () => {
         return json.results;
       });
   };
+ 
+  //get Movies cast from tmdb-api
+    export const getMovieCast = (id: string) => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${import.meta.env.VITE_TMDB_KEY}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(`Failed to get movie cast. Response status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .catch((error) => {
+    throw error
+ });
+};  
+
+//get individual actor Bio from tmdb-api
+export const getActor = (id: string) => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/person/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(`Failed to get movie cast. Response status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .catch((error) => {
+    throw error
+ });
+};  
+
+
+
 
   export const getUpcomingMovies = () => {
   return fetch(

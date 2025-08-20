@@ -97,6 +97,12 @@ const isFavourite = favourites.find((id) => id === movie.id)? true : false;//NEW
             More Info ...
           </Button>
         </Link>
+
+        <Link to={`/movies/${movie.id}/cast`}>
+          <Button variant="outlined" size="medium" color="secondary">
+             View Cast...
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );
