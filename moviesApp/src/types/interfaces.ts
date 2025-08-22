@@ -65,9 +65,9 @@ export interface MoviePageProps {
   images: MovieImage[];
 }
 
-//export interface MovieListPageTemplateProps extends BaseMovieListProps {
-  //title: string;
-//}
+export interface MovieListPageTemplateProps extends BaseMovieListProps {
+  title: string;
+}
 
 export interface BaseMovieListProps {
   movies: BaseMovieProps[];
