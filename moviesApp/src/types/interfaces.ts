@@ -18,7 +18,7 @@ export interface BaseMovieProps {
     genre_ids?: number[];
   }
 
-export type FilterOption = "title" | "genre";
+export type FilterOption = "title" | "genre" | "cast";
 
 
  export interface BaseMovieListProps { 

@@ -16,6 +16,7 @@ import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner';
 
+
 const styles = {
   root: {
     maxWidth: 345,
@@ -32,9 +33,11 @@ const styles = {
      onUserInput: (f: FilterOption, s: string)  => void;
      titleFilter: string;
      genreFilter: string;
+     castFilter: string;
+     sortOption: string;
   }
 
-  const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreFilter, onUserInput }) => {
+  const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreFilter, castFilter, onUserInput,sortOption }) => {
   const { data, error, isLoading, isError } = useQuery<GenreData, Error>("genres", getGenres);
 
   if (isLoading) {
@@ -61,6 +64,10 @@ const styles = {
     handleChange(e, "genre", e.target.value)
   };
 
+  const handleCastChange = (e: ChangeEvent<HTMLInputElement>) => {
+  handleChange(e, "cast", e.target.value);
+  };
+
   
   return (
     <>
@@ -79,6 +86,16 @@ const styles = {
           variant="filled"
           onChange={handleTextChange}
         />
+        <TextField
+          sx={styles.formControl}
+          id="cast-search"
+          label="Cast"
+          type="search"
+          value={castFilter}
+          variant="filled"
+          onChange={handleCastChange}
+        />
+
         <FormControl sx={styles.formControl}>
           <InputLabel id="genre-label">Genre</InputLabel>
           <Select
@@ -95,20 +112,7 @@ const styles = {
               );
             })}
           </Select>
-        </FormControl>
-        <FormControl sx={styles.formControl}>
-          <InputLabel id="country-label">Production Country</InputLabel>
-          <Select
-            labelId="country-label"
-            id="country-select"
-            value={genreFilter}
-            onChange={handleGenreChange}
-            //value={countryCode}
-            //onChange={(e) => setCountryCode(e.target.value)}
-  >
-            
-               </Select>
-        </FormControl>
+        </FormControl> 
 
 
 
@@ -118,7 +122,19 @@ const styles = {
         <CardContent>
           <Typography variant="h5" component="h1">
             <SortIcon fontSize="large" />
-            Sort the movies.
+            <FormControl sx={styles.formControl}>
+            <InputLabel id="sort-label">Sort By</InputLabel>
+            <Select
+              labelId="sort-label"
+              id="sort-select"
+              value={sortOption}
+              onChange={(e) => onUserInput("sort", e.target.value)}
+            >
+              <MenuItem value="title">Title</MenuItem>
+              <MenuItem value="release_date">Release Date</MenuItem>
+              <MenuItem value="rating">Rating</MenuItem>
+            </Select>
+          </FormControl>
           </Typography>
         </CardContent>
       </Card>
