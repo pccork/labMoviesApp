@@ -13,6 +13,7 @@ import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
 import MustWatchMoviesPage from "./pages/mustWatchMoviesPage";
 import MovieCastPage from "./pages/movieCastPage"
+import AuthContextProvider from "./contexts/authContext"; //AuthContext function
 
 
 const queryClient = new QueryClient({
@@ -31,6 +32,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
      <BrowserRouter>
+      <AuthContextProvider>
           <SiteHeader />      {/* New Header  */}
            <MoviesContextProvider>
       <Routes>
@@ -45,6 +47,7 @@ const App = () => {
         <Route path="/reviews/form" element={<AddMovieReviewPage/>} />
       </Routes>
       </MoviesContextProvider>
+       </AuthContextProvider>
     </BrowserRouter>
     <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

@@ -116,5 +116,13 @@ export interface ActorBio {
   place_of_birth: string;
 }
 
+//Add type for login
+export interface AuthInterface {
+user: string | null;
+login: (username: string, password: string) => boolean;
+logout: () => void;
+authenticated: boolean;
+
+}
 
 
