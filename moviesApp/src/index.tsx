@@ -14,6 +14,7 @@ import AddMovieReviewPage from './pages/addMovieReviewPage';
 import MustWatchMoviesPage from "./pages/mustWatchMoviesPage";
 import MovieCastPage from "./pages/movieCastPage"
 import AuthContextProvider from "./contexts/authContext"; //AuthContext function
+import ProtectedRoute from "./components/ProtectedRoute";
 
 
 const queryClient = new QueryClient({
@@ -36,8 +37,8 @@ const App = () => {
           <SiteHeader />      {/* New Header  */}
            <MoviesContextProvider>
       <Routes>
-        <Route path="/movies/favourites" element={<FavouriteMoviesPage />} />
-        <Route path="/movies/mustWatch" element={<MustWatchMoviesPage />} />
+        <Route path="/movies/favourites" element={ <ProtectedRoute><FavouriteMoviesPage /></ProtectedRoute>} />
+        <Route path="/movies/mustWatch" element={<ProtectedRoute><MustWatchMoviesPage /></ProtectedRoute>} />
         <Route path="/movies/upcoming" element={<UpcomingMoivesPage />} />  
         <Route path="/movies/:id" element={<MoviePage />} />
         <Route path="/movies/:id/cast" element={<MovieCastPage />} />
