@@ -100,7 +100,8 @@ export interface DiscoverMovies {
   page: number;	
   total_pages: number;
   total_results: number;
-  results: BaseMovieProps[];
+  results: MovieCastProps[];
+  //results: BaseMovieProps[];
 }
 
 export interface CastMember {

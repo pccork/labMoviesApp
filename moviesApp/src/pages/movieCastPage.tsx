@@ -9,7 +9,7 @@ import Spinner from '../components/spinner';
 //import { MovieDetailsProps } from "../types/interfaces";
 import { CastMember, MovieCastProps } from "../types/interfaces";
 import MovieCast from "../components/movieCast";
-
+import Bios from "../components/Bios"; 
 
 const MovieCastPage: React.FC= () => {
   const { id } = useParams();
@@ -51,8 +51,11 @@ const MovieCastPage: React.FC= () => {
     <>
       {movie ? (
         <>
-        <PageTemplate movie={movie}> 
+        <PageTemplate movie={movie}>
+           <div>
           <MovieCast {...movie} />
+          <Bios {...movie}  />
+          </div>
         </PageTemplate>
       </>
     ) : (

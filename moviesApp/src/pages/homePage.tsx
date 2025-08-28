@@ -14,6 +14,7 @@ import Spinner from "../components/spinner";
 import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
 import LoginForm from "../components/loginForm";
 
+
 const titleFiltering = {
   name: "title",
   value: "",
@@ -34,7 +35,8 @@ const castFiltering = {
 const HomePage: React.FC = () => {
   const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>("discover", getMovies);
   const { filterValues, setFilterValues, sortOption, setSortOption, sortAndFilter } 
-  = useFiltering<BaseMovieProps>([
+  //= useFiltering<BaseMovieProps>([
+  = useFiltering<MovieCastProps>([
   titleFiltering,
   genreFiltering,
   castFiltering // useFiltering keep the filter and sort state updated

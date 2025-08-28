@@ -39,6 +39,7 @@ const styles = {
 const MovieCast: React.FC<MovieCastProps> = (movie) => {
 
     const [drawerOpen, setDrawerOpen] = useState(false); // New
+    
 
     return (
         <>

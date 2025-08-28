@@ -83,7 +83,7 @@ export const getMovies = () => {
 //get individual actor Bio from tmdb-api
 export const getActor = (id: string) => {
   return fetch(
-    `https://api.themoviedb.org/3/movie/person/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    `https://api.themoviedb.org/3/person/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`Failed to get movie cast. Response status: ${response.status}`);

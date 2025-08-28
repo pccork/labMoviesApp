@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
 import { getActor } from "../../api/tmdb-api";
+import Button from "@mui/material/Button";
 //import { excerpt } from "../../util";
 
 import type { MovieBioProps, ActorBio } from "../../types/interfaces"; // Import the MovieT type from the appropriate location
@@ -20,6 +21,7 @@ const styles = {
 
 const Bios: React.FC<MovieBioProps> = ({cast} ) => { 
     const [bios, setBios] = useState<ActorBio[]>([]);
+    //const [expandedActorId, setExpandedActorId] = useState<number | null>(null);
 
     useEffect(() => {
            const fetchAllBios = async () => {
@@ -36,6 +38,9 @@ const Bios: React.FC<MovieBioProps> = ({cast} ) => {
              fetchAllBios();
            }, [cast]);
            // eslint-disable-next-line react-hooks/exhaustive-deps
+            //const toggleExpand = (id: number) => {
+            //setExpandedActorId(prev => (prev === id ? null : id));
+            //};
        
 
 
@@ -53,24 +58,22 @@ const Bios: React.FC<MovieBioProps> = ({cast} ) => {
         <TableBody>
           {bios.map((actor) => (
             <TableRow key={actor.id}>
-              <TableCell component="th" scope="row">
-                {actor.name}
-              </TableCell>
+              <TableCell component="th" scope="row">{actor.name}</TableCell>
               <TableCell align="center">{actor.place_of_birth || "—"}</TableCell>
               <TableCell align="center">
-                {actor.biography.length > 150
+                  {actor.biography.length > 150
                   ? `${actor.biography.slice(0, 150)}...`
                   : actor.biography || "No bio available"}
               </TableCell>
               <TableCell align="right">
-                <Link to={`/actors/${actor.id}`} state={{ actor }}>
+              <Link to={`/actors/${actor.id}`} state={{ actor }}>
                   Full Bio
-                </Link>
+              </Link>           
               </TableCell>
             </TableRow>
-          ))}
+          ))}          
         </TableBody>
-      </Table>
+      </Table> 
     </TableContainer>
   );
 };
